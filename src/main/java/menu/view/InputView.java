@@ -26,6 +26,7 @@ public class InputView {
             try {
                 Validation.nameOutOfLength(splitNames);
                 Validation.coachOutOfCount(splitNames);
+                Validation.duplicateName(splitNames);
 
                 flag = false;
             } catch (IllegalArgumentException e) {
