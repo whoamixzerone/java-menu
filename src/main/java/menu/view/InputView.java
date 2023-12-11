@@ -45,5 +45,6 @@ public class InputView {
 
     public void readDontEat() {
         String input = Console.readLine();
+        String[] dontEats = StringUtils.split(input);
     }
 }
