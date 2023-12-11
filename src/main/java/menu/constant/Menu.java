@@ -13,28 +13,20 @@ public enum Menu {
     NONE("없음", Collections.EMPTY_LIST);
 
     private String category;
-    private List<String> names;
+    private List<String> foods;
 
-    Menu(String category, List<String> names) {
+    Menu(String category, List<String> foods) {
         this.category = category;
-        this.names = names;
+        this.foods = foods;
     }
 
     public static boolean hasMenu(String menu) {
-        for (Menu category : Menu.values()) {
-            if (hasFood(category, menu)) {
-                return true;
-            }
-        }
-        return false;
+        return Arrays.stream(Menu.values())
+                .anyMatch(category -> hasFood(category, menu));
     }
 
     private static boolean hasFood(Menu category, String menu) {
-        for (String name : category.names) {
-            if (name.equals(menu)) {
-                return true;
-            }
-        }
-        return false;
+        return category.foods.stream()
+                .anyMatch(food -> food.equals(menu));
     }
 }

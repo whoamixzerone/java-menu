@@ -4,7 +4,6 @@ import camp.nextstep.edu.missionutils.Console;
 import menu.util.StringUtils;
 import menu.util.Validation;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class InputView {
