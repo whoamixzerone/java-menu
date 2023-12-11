@@ -14,5 +14,6 @@ public class RecommendMenuController {
 
     public void execute() {
         outputView.printRecommendStart();
+        inputView.readName();
     }
 }
