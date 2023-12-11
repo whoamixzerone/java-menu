@@ -5,6 +5,16 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 public class Validation {
+    public static void coachOutOfCount(final String[] names) {
+        if (isCountOutOfRange(names)) {
+            throw new IllegalArgumentException("[ERROR] 코치는 최소 2명 이상 혹은 최대 5명까지 입력해야 합니다.");
+        }
+    }
+
+    private static boolean isCountOutOfRange(String[] names) {
+        return names.length < 2 || names.length > 5;
+    }
+
     public static void nameOutOfLength(String[] names) {
         Predicate<String> predicate = Validation::isLengthOutOfRange;
         Consumer<String> consumer = (name) -> {

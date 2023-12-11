@@ -25,6 +25,8 @@ public class InputView {
             String[] splitNames = StringUtils.split(input);
             try {
                 Validation.nameOutOfLength(splitNames);
+                Validation.coachOutOfCount(splitNames);
+
                 flag = false;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
