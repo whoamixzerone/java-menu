@@ -3,6 +3,8 @@ package menu.controller;
 import menu.view.InputView;
 import menu.view.OutputView;
 
+import java.util.List;
+
 public class RecommendMenuController {
     private InputView inputView;
     private OutputView outputView;
@@ -14,6 +16,11 @@ public class RecommendMenuController {
 
     public void execute() {
         outputView.printRecommendStart();
-        inputView.readName();
+        List<String> names = inputView.readName();
+
+        for (String name : names) {
+            outputView.printDontEatMenu(name);
+            inputView.readDontEat();
+        }
     }
 }

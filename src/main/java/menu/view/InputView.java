@@ -4,6 +4,9 @@ import camp.nextstep.edu.missionutils.Console;
 import menu.util.StringUtils;
 import menu.util.Validation;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class InputView {
     private static InputView inputView;
 
@@ -17,16 +20,18 @@ public class InputView {
         return inputView;
     }
 
-    public void readName() {
+    public List<String> readName() {
         boolean flag;
+        String[] names;
 
         do {
             String input = Console.readLine();
-            String[] splitNames = StringUtils.split(input);
+            names = StringUtils.split(input);
+
             try {
-                Validation.nameOutOfLength(splitNames);
-                Validation.coachOutOfCount(splitNames);
-                Validation.duplicateName(splitNames);
+                Validation.nameOutOfLength(names);
+                Validation.coachOutOfCount(names);
+                Validation.duplicateName(names);
 
                 flag = false;
             } catch (IllegalArgumentException e) {
@@ -34,5 +39,11 @@ public class InputView {
                 flag = true;
             }
         } while (flag);
+
+        return List.of(names);
+    }
+
+    public void readDontEat() {
+        String input = Console.readLine();
     }
 }
