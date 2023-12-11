@@ -43,15 +43,17 @@ public class InputView {
         return List.of(names);
     }
 
-    public void readDontEat() {
+    public List<String> readDontEat() {
         boolean flag;
+        String[] inputMenu;
 
         do {
             String input = Console.readLine();
-            String[] dontEats = StringUtils.split(input);
+            inputMenu = StringUtils.split(input);
 
             try {
-                Validation.DontEatMenuOutOfCount(dontEats);
+                Validation.DontEatMenuOutOfCount(inputMenu);
+                Validation.hasMenu(inputMenu);
 
                 flag = false;
             } catch (IllegalArgumentException e) {
@@ -59,5 +61,7 @@ public class InputView {
                 flag = true;
             }
         } while (flag);
+
+        return List.of(inputMenu);
     }
 }

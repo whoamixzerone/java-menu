@@ -1,10 +1,20 @@
 package menu.util;
 
+import menu.constant.Menu;
+
 import java.util.Arrays;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 public class Validation {
+    public static void hasMenu(String[] inputMenu) {
+        for (String menu : inputMenu) {
+            if (!"".equals(menu) && !Menu.hasMenu(menu)) {
+                throw new IllegalArgumentException("[ERROR] 존재하지 않는 메뉴입니다.");
+            }
+        }
+    }
+
     public static void DontEatMenuOutOfCount(String[] inputMenu) {
         if (inputMenu.length > 2) {
             throw new IllegalArgumentException("[ERROR] 못 먹는 메뉴는 최소 0개, 최대 2개까지만 입력할 수 있습니다.");

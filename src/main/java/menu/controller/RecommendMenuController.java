@@ -20,7 +20,7 @@ public class RecommendMenuController {
 
         for (String name : names) {
             outputView.printDontEatMenu(name);
-            inputView.readDontEat();
+            List<String> donEats = inputView.readDontEat();
         }
     }
 }
