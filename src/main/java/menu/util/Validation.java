@@ -5,6 +5,12 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 public class Validation {
+    public static void DontEatMenuOutOfCount(String[] inputMenu) {
+        if (inputMenu.length > 2) {
+            throw new IllegalArgumentException("[ERROR] 못 먹는 메뉴는 최소 0개, 최대 2개까지만 입력할 수 있습니다.");
+        }
+    }
+
     public static void duplicateName(String[] names) {
         int countName = (int) Arrays.stream(names)
                 .distinct()

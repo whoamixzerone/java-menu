@@ -44,7 +44,20 @@ public class InputView {
     }
 
     public void readDontEat() {
-        String input = Console.readLine();
-        String[] dontEats = StringUtils.split(input);
+        boolean flag;
+
+        do {
+            String input = Console.readLine();
+            String[] dontEats = StringUtils.split(input);
+
+            try {
+                Validation.DontEatMenuOutOfCount(dontEats);
+
+                flag = false;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                flag = true;
+            }
+        } while (flag);
     }
 }
