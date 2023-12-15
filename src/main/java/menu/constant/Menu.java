@@ -29,4 +29,16 @@ public enum Menu {
         return category.foods.stream()
                 .anyMatch(food -> food.equals(menu));
     }
+
+    public static String findCategoryByIndex(int index) {
+        return Menu.values()[index - 1].category;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public List<String> getFoods() {
+        return foods;
+    }
 }
