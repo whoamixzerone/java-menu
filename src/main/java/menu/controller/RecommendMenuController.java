@@ -1,6 +1,5 @@
 package menu.controller;
 
-import menu.domain.Coach;
 import menu.domain.RecommendMenu;
 import menu.view.InputView;
 import menu.view.OutputView;
@@ -23,8 +22,7 @@ public class RecommendMenuController {
         for (String name : names) {
             outputView.printDontEatMenu(name);
             List<String> donEats = inputView.readDontEat();
-            Coach coach = new Coach(name);
-            RecommendMenu recommendMenu = new RecommendMenu(coach, donEats);
+            RecommendMenu recommendMenu = new RecommendMenu(name, donEats);
         }
     }
 }
