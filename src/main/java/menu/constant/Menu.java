@@ -1,5 +1,7 @@
 package menu.constant;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -32,6 +34,14 @@ public enum Menu {
 
     public static String findCategoryByIndex(int index) {
         return Menu.values()[index - 1].category;
+    }
+
+    public static String findFoodInCategory(String category) {
+        return shuffle(Menu.valueOf(category)).get(0);
+    }
+
+    private static List<String> shuffle(Menu menu) {
+        return Randoms.shuffle(menu.foods);
     }
 
     public String getCategory() {
