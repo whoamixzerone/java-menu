@@ -1,28 +1,48 @@
 package menu.domain;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import menu.constant.Menu;
-import menu.constant.Weekdays;
 
 import java.util.ArrayList;
-import java.util.EnumMap;
 import java.util.List;
-import java.util.Map;
 
 public class RecommendMenu {
     private static final int MAX_CATEGORY = 2;
-    Map<Weekdays, List<Coach>> recommeds;
+    private static final int CATEGORY_LENGTH = 5;
+    List<Coach> coaches;
 
     public RecommendMenu(String name, List<String> donEats) {
-        recommeds = new EnumMap<>(Weekdays.class);
+        coaches = new ArrayList<>();
 
-        List<String> categories = recommendCategoryOfDays();
+        List<Menu> categories = recommendCategoryOfDays();
+        List<String> foods = recommendMenuByCategory(categories, donEats);
+        coaches.add(new Coach(name, categories, foods));
     }
 
-    private List<String> recommendCategoryOfDays() {
-        List<String> categories = new ArrayList<>();
+    private List<String> recommendMenuByCategory(List<Menu> categories, List<String> donEats) {
+        List<String> foods = new ArrayList<>();
+
+        for (Menu category : categories) {
+            while (foods.size() < Menu.values().length) {
+                String food = Menu.findFoodInCategory(category);
+                if (!donEats.contains(food) && !foods.contains(food)) {
+                    foods.add(food);
+                    break;
+                }
+            }
+        }
+        return foods;
+    }
+
+    private int getCategoryIndex() {
+        return Randoms.pickNumberInRange(1, CATEGORY_LENGTH);
+    }
+
+    private List<Menu> recommendCategoryOfDays() {
+        List<Menu> categories = new ArrayList<>();
 
         while (categories.size() < Menu.values().length) {
-            String category = Menu.findCategoryByIndex(Recommend.getCategoryIndex());
+            Menu category = Menu.findCategoryByIndex(getCategoryIndex());
             if (isAllowMenuOutOfCount(categories, category)) {
                 categories.add(category);
             }
@@ -31,7 +51,7 @@ public class RecommendMenu {
         return categories;
     }
 
-    private boolean isAllowMenuOutOfCount(List<String> categories, String category) {
+    private boolean isAllowMenuOutOfCount(List<Menu> categories, Menu category) {
         int categoryCount = (int) categories.stream()
                 .filter(category::equals)
                 .count();

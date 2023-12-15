@@ -32,12 +32,12 @@ public enum Menu {
                 .anyMatch(food -> food.equals(menu));
     }
 
-    public static String findCategoryByIndex(int index) {
-        return Menu.values()[index - 1].category;
+    public static Menu findCategoryByIndex(int index) {
+        return Menu.values()[index - 1];
     }
 
-    public static String findFoodInCategory(String category) {
-        return shuffle(Menu.valueOf(category)).get(0);
+    public static String findFoodInCategory(Menu menu) {
+        return shuffle(menu).get(0);
     }
 
     private static List<String> shuffle(Menu menu) {

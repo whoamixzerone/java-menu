@@ -2,13 +2,16 @@ package menu.domain;
 
 import menu.constant.Menu;
 
-import java.util.Map;
+import java.util.List;
 
 public class Coach {
     private String name;
-    private Map<Menu, String> menus;
+    private List<Menu> categories;
+    private List<String> foods;
 
-    public Coach(String name) {
+    public Coach(String name, List<Menu> categories, List<String> foods) {
         this.name = name;
+        this.categories = categories;
+        this.foods = foods;
     }
 }
