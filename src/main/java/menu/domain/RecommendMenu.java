@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 public class RecommendMenu {
+    private static final int MAX_CATEGORY = 2;
     Map<Weekdays, List<Coach>> recommeds;
 
     public RecommendMenu(String name, List<String> donEats) {
@@ -22,9 +23,18 @@ public class RecommendMenu {
 
         while (categories.size() < Menu.values().length) {
             String category = Menu.findCategoryByIndex(Recommend.getCategoryIndex());
-            categories.add(category);
+            if (isAllowMenuOutOfCount(categories, category)) {
+                categories.add(category);
+            }
         }
 
         return categories;
+    }
+
+    private boolean isAllowMenuOutOfCount(List<String> categories, String category) {
+        int categoryCount = (int) categories.stream()
+                .filter(category::equals)
+                .count();
+        return categoryCount < MAX_CATEGORY;
     }
 }
