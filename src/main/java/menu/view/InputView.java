@@ -42,7 +42,7 @@ public class InputView {
         return List.of(names);
     }
 
-    public List<String> readDontEat() {
+    public List<String> readCantEat() {
         boolean flag;
         String[] inputMenu;
 
